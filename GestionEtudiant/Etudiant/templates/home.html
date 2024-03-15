@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+
+<div class="container-fluid w-75  p-4 mt-5 shadow rounded">
+  <legend class="text-center fw-bold">LISTE DES ETUDIANTS</legend>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="table bg-primary">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Adresse email</th>
+        <th scope="col">Téléphone</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Parcours</th>
+        <th scope="col">Niveau</th>
+        <th scope="col">Création</th>
+      </tr>
+    </thead>
+  <tbody>
+      
+  {% if records %}
+    {% for record in records %}
+      <tr>
+        <td><a class="text-decoration-none" href="{% url 'record' record.id %}">{{ record.id }}</a></td>
+        <td>{{ record.first_name }} {{ record.last_name }}</td>
+        <td>{{ record.email }}</td>
+        <td>{{ record.phone }}</td>
+        <td>{{ record.address }}</td>
+        <td>{{ record.parcour }}</td>
+        <td>{{ record.level }}</td>
+        <td>{{ record.created_at }}</td>
+      </tr>
+    {% endfor %}
+
+  {% endif %}
+
+    
+    </tbody>
+	</table>
+</div>
+
+
+
+
+{% else %}
+
+
+<form method="POST" action="{% url 'home' %}">
+  <div class="container-fluid w-50 p-4 mt-5 border shadow rounded">
+    <legend class="text-center mt-3 mb-3 fw-bold">CONNEXION</legend>
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <input type="text" class="form-control" name="username", placeholder="Nom d'utilisateur" required>
+      
+    </div><br/>
+    <div class="mb-3">
+      <input type="password" class="form-control" name="password", placeholder="Mot de passe" required>
+    </div>
+    <br/>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary">Connexion</button>
+    </div>
+  </div>
+</form>
+
+
+
+{% endif %}
+
+{% endblock %}

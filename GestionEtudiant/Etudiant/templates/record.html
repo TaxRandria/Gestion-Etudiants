@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class=" container-fluid justify-content-center card w-50">
+  <div class="card-header">
+    <strong>
+      {{ customer_record.first_name }} 
+		  {{ customer_record.last_name }}
+    </strong>
+  </div>
+  <div class="card-body">
+      <p class="card-text">
+      <strong>Adresse email: </strong>{{ customer_record.email }}</p>
+
+      <p class="card-text">
+      <strong>Téléphone: </strong>{{ customer_record.phone }}
+      </p>
+
+      <p class="card-text">
+      <strong>Adresse: </strong>{{ customer_record.address }}</p>
+
+      <p class="card-text">
+      <strong>Parcours: </strong>{{ customer_record.parcour }}</p>
+
+      <p class="card-text">
+      <strong>Niveau: </strong>{{ customer_record.level }}</p>
+
+      <p class="card-text">
+      <strong>Ajouté le: </strong>{{ customer_record.created_at }}</p>
+
+      <p class="card-text">
+      <strong>ID: </strong>{{ customer_record.id }}</p>
+  </div>
+  <div class="container d-flex justify-content-center  p-4 gap-4">
+    
+    <a href="{% url 'update_record' customer_record.id %}" class="btn btn-primary">Modifier</a>
+
+    <a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">Supprimer</a>
+
+    <a href="{% url 'home' %}" class="btn btn-secondary">Retour</a>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary text-white shadow">
+  <div class="container-fluid m-2">
+    <a class="navbar-brand text-white fw-bold" href="{% url 'home' %}">EDUKA</a>
+    <div class="nav justify-content-center">
+        
+        {% if user.is_authenticated %}
+        <div class="nav-item">
+          <a class="nav-link text-white fw-bold" href="{% url 'add_record' %}">Ajouter un étudiant</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link text-white fw-bold" href="{% url 'logout' %}">Deconnexion</a>
+        </div>
+
+        {% else %}
+        <div class="nav-item">
+          <a class="nav-link text-white fw-bold" href="{% url 'register' %}">Inscription</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link text-white fw-bold" href="{% url 'home' %}">Connexion</a>
+        </div>        
+        {% endif %}
+      
+    </div>
+  </div>
+</nav>
